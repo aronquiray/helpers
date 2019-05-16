@@ -35,4 +35,22 @@ if (!function_exists('is_class_uses_deep')) {
     }
 }
 
+if (!function_exists('dummy_image')) {
+    /**
+     * @param  int  $width
+     * @param  int  $height
+     * @param  string  $bg
+     * @param  string  $fg
+     * @param  null  $text
+     *
+     * @return string
+     */
+    function dummy_image($width = 600, $height = 400, $bg = 'f6de3d', $fg = '007ac3', $text = null): string
+    {
+        if (is_null($text)) {
+            $text = app('config')->get('app.name');
+        }
+        return "https://dummyimage.com/{$width}x{$height}/{$bg}/{$fg}&text={$text}";
+    }
+}
 
