@@ -39,13 +39,13 @@ if (!function_exists('dummy_image')) {
     /**
      * @param  int  $width
      * @param  int  $height
+     * @param  null  $text
      * @param  string  $bg
      * @param  string  $fg
-     * @param  null  $text
      *
      * @return string
      */
-    function dummy_image($width = 600, $height = 400, $bg = 'f6de3d', $fg = '007ac3', $text = null): string
+    function dummy_image($width = 600, $height = 400, $text = null, $bg = 'f6de3d', $fg = '007ac3'): string
     {
         if (is_null($text)) {
             $text = app('config')->get('app.name');
