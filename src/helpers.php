@@ -17,21 +17,12 @@ if (!function_exists('is_class_uses_deep')) {
     /**
      * @param $class
      * @param  string  $trait
-     * @param  bool  $autoload
      *
      * @return bool
      */
-    function is_class_uses_deep($class, string $trait, $autoload = true): bool
+    function is_class_uses_deep($class, string $trait): bool
     {
-        $traits = [];
-
-        do {
-            $traits = array_merge(class_uses($class, $autoload), $traits);
-        } while ($class = get_parent_class($class));
-
-        $traits = array_unique($traits);
-
-        return in_array($trait, $traits);
+        return in_array($trait, class_uses_recursive($class));
     }
 }
 
