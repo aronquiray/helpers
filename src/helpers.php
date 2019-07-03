@@ -45,3 +45,15 @@ if (!function_exists('dummy_image')) {
     }
 }
 
+if (!function_exists('is_latest_mysql_version')) {
+    /**
+     * @return bool
+     */
+    function is_latest_mysql_version(): bool
+    {
+        $pdo = Illuminate\Support\Facades\DB::connection()->getPdo();
+        return ($pdo->getAttribute(PDO::ATTR_DRIVER_NAME) === 'mysql') &&
+            version_compare($pdo->getAttribute(PDO::ATTR_SERVER_VERSION), '5.7.8', 'ge');
+    }
+}
+
