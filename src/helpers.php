@@ -57,3 +57,39 @@ if (!function_exists('is_latest_mysql_version')) {
     }
 }
 
+if (!function_exists('mime_types_by_extension')) {
+    /**
+     * @param  string  $type
+     *
+     * @return array
+     */
+    function mime_types_by_extension(string $type): array
+    {
+        $data = [
+            'docx' => [
+                'application/msword',
+                'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+                'application/vnd.openxmlformats-officedocument.wordprocessingml.template',
+                'application/vnd.ms-word.document.macroEnabled.12',
+                'application/vnd.ms-word.template.macroEnabled.12',
+            ],
+
+            'xls' => [
+                'application/vnd.ms-excel',
+                'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+                'application/vnd.openxmlformats-officedocument.spreadsheetml.template',
+                'application/vnd.ms-excel.sheet.macroEnabled.12',
+                'application/vnd.ms-excel.template.macroEnabled.12',
+                'application/vnd.ms-excel.addin.macroEnabled.12',
+                'application/vnd.ms-excel.sheet.binary.macroEnabled.12',
+            ],
+
+            'pdf' => [
+                'application/pdf',
+            ],
+        ];
+
+        return isset($data[$type]) ? $data[$type] : [];
+    }
+}
+
