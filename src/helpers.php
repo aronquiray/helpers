@@ -93,3 +93,38 @@ if (!function_exists('mime_types_by_extension')) {
     }
 }
 
+if (!function_exists('current_base_url')) {
+    /**
+     * @param  bool  $addCurrentScheme
+     *
+     * @return string
+     */
+    function current_base_url(bool $addCurrentScheme = false): string
+    {
+        $currentBaseUrl = parse_url(app('url')->to('/'))['host'];
+        $tripleWWW = 'www.';
+
+        $currentBaseUrl = substr($currentBaseUrl, 0, 4) == $tripleWWW
+            ? str_replace($tripleWWW, '', $currentBaseUrl)
+            : $currentBaseUrl;
+
+        if ($addCurrentScheme) {
+            return add_scheme_host($currentBaseUrl);
+        }
+
+        return $currentBaseUrl;
+    }
+}
+
+if (!function_exists('add_scheme_host')) {
+    /**
+     * @param  string  $host
+     *
+     * @return string
+     */
+    function add_scheme_host(string $host): string
+    {
+        $scheme = parse_url(app('url')->to('/'))['scheme'];
+        return "{$scheme}://{$host}";
+    }
+}
