@@ -2,6 +2,7 @@
 
 
 ## Changes Log 
+    v1.1.0: Add support for laravel 6 
     v1.0.7: Add license "proprietary" as closed-source
     v1.0.6: Add current_base_url(), move add_scheme_host()
     v1.0.5: Add mime_types_by_extension()
